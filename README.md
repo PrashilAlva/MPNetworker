@@ -1,3 +1,3 @@
 **MP Networker**
 
-Package providing Network Support to MoviePedia.
+Swift Package for Utilizing MP Networker SDK to provide Network support to Movie Pedia.
