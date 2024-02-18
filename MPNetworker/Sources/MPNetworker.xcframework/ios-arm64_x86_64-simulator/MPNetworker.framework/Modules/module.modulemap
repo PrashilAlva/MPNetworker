@@ -1,0 +1,11 @@
+framework module MPNetworker {
+  umbrella header "MPNetworker.h"
+  export *
+
+  module * { export * }
+}
+
+module MPNetworker.Swift {
+  header "MPNetworker-Swift.h"
+  requires objc
+}

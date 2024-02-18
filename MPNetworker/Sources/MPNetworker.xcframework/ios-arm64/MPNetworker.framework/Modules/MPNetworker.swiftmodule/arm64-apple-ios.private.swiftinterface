@@ -1,0 +1,162 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.9 (swiftlang-5.9.0.128.106 clang-1500.0.40.1)
+// swift-module-flags: -target arm64-apple-ios16.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name MPNetworker
+// swift-module-flags-ignorable: -enable-bare-slash-regex
+import Foundation
+@_exported import MPNetworker
+import Swift
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+public struct MPImage : Swift.Codable, Swift.Identifiable, Swift.Hashable {
+  public var id: Foundation.UUID
+  public var aspectRatio: Swift.Double
+  public var height: Swift.Int
+  public var width: Swift.Int
+  public var filePath: Swift.String
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: MPNetworker.MPImage, b: MPNetworker.MPImage) -> Swift.Bool
+  public typealias ID = Foundation.UUID
+  public func encode(to encoder: any Swift.Encoder) throws
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct ImageList : Swift.Codable {
+  public var backdrops: [MPNetworker.MPImage]
+  public var logos: [MPNetworker.MPImage]
+  public var posters: [MPNetworker.MPImage]
+  public init()
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct Personnel : Swift.Codable, Swift.Identifiable, Swift.Hashable {
+  public var id: Foundation.UUID
+  public var responsibility: Swift.String
+  public var name: Swift.String
+  public var originalName: Swift.String
+  public var profilePath: Swift.String?
+  public var character: Swift.String?
+  public var job: Swift.String?
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: MPNetworker.Personnel, b: MPNetworker.Personnel) -> Swift.Bool
+  public typealias ID = Foundation.UUID
+  public func encode(to encoder: any Swift.Encoder) throws
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct PersonnelList : Swift.Codable {
+  public var cast: [MPNetworker.Personnel]
+  public var crew: [MPNetworker.Personnel]
+  public init()
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct Keyword : Swift.Codable, Swift.Identifiable, Swift.Hashable {
+  public var id: Foundation.UUID
+  public var name: Swift.String
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: MPNetworker.Keyword, b: MPNetworker.Keyword) -> Swift.Bool
+  public typealias ID = Foundation.UUID
+  public func encode(to encoder: any Swift.Encoder) throws
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct Keywords : Swift.Codable {
+  public var keywords: [MPNetworker.Keyword]
+  public init()
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct Movies : Swift.Codable {
+  public var results: [MPNetworker.Movie]
+  public init()
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct Movie : Swift.Codable, Swift.Identifiable, Swift.Hashable {
+  public var id: Swift.Int
+  public var adult: Swift.Bool
+  public var originalLanguage: Swift.String
+  public var originalTitle: Swift.String
+  public var posterPath: Swift.String
+  public var releaseDate: Swift.String
+  public var title: Swift.String
+  public var voteAverage: Swift.Double
+  public var backdropPath: Swift.String?
+  public var budget: Swift.Int?
+  public var genres: [MPNetworker.Genre]?
+  public var overview: Swift.String?
+  public var revenue: Swift.Int?
+  public var runtime: Swift.Int?
+  public var voteCount: Swift.Int?
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: MPNetworker.Movie, b: MPNetworker.Movie) -> Swift.Bool
+  public typealias ID = Swift.Int
+  public func encode(to encoder: any Swift.Encoder) throws
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct Genre : Swift.Codable, Swift.Identifiable, Swift.Hashable {
+  public var id: Foundation.UUID
+  public var name: Swift.String
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: MPNetworker.Genre, b: MPNetworker.Genre) -> Swift.Bool
+  public typealias ID = Foundation.UUID
+  public func encode(to encoder: any Swift.Encoder) throws
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct MPVideo : Swift.Codable, Swift.Identifiable, Swift.Hashable {
+  public var id: Foundation.UUID
+  public var name: Swift.String
+  public var key: Swift.String
+  public var site: Swift.String
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: MPNetworker.MPVideo, b: MPNetworker.MPVideo) -> Swift.Bool
+  public typealias ID = Foundation.UUID
+  public func encode(to encoder: any Swift.Encoder) throws
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct VideoList : Swift.Codable {
+  public var results: [MPNetworker.MPVideo]
+  public init()
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+@available(iOS 15.0, *)
+public struct MPAPIClient {
+  #if compiler(>=5.3) && $AsyncAwait
+  public static func obtainLatestMovies() async throws -> MPNetworker.Movies
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  public static func obtainPopularMovies() async throws -> MPNetworker.Movies
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  public static func getDetails(for movieID: Swift.Int) async throws -> MPNetworker.Movie
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  public static func getCastAndCrew(for movieID: Swift.Int) async throws -> MPNetworker.PersonnelList
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  public static func getImages(for movieID: Swift.Int) async throws -> MPNetworker.ImageList
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  public static func getVideos(for movieID: Swift.Int) async throws -> MPNetworker.VideoList
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  public static func getKeywords(for movieID: Swift.Int) async throws -> MPNetworker.Keywords
+  #endif
+}
